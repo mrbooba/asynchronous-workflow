@@ -27,7 +27,6 @@ opener.addheaders = [('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9
 urllib.request.install_opener(opener)
 
 
-
 ## Save Image
 def save_image(image, path):
     image.save(path, 'png')
@@ -87,7 +86,7 @@ for f in glob.glob('grayscale_pics/*.*'):
     myfiles = grid_fs.put(rem,content_type='img/png', filename=f.rsplit('/', 1)[-1], mode='rb')
     outputdata = grid_fs.get(myfiles).read()
    
-    
+### Flask ########    
 
 @app.route('/')
 def index():
