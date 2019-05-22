@@ -105,7 +105,7 @@ def get_file(filename):
 def hash_images(md5):
     data = grid_fs.col_name.find({id: _id}, {md5: 1})
     d = grid_fs.get_last_version(data).read()
-    img = app.response_class(data, direct_passthrough=True, mimetype='image/png')
+    img = app.response_class(d, direct_passthrough=True, mimetype='image/png')
     return img
 
 if __name__ == '__main__':
