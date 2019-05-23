@@ -53,7 +53,7 @@ client = MongoClient('localhost', 27017)
 
 db = client['qs'] # the database
 
-grid_fs = gridfs.GridFS(db, "niveaugris") # niveaugris is the collection name
+grid_fs = gridfs.GridFS(db, "niveaugris", disable_md5=False) # niveaugris is the collection name
 
     
 for link in links:
@@ -107,7 +107,7 @@ def hash_images(md5):
     return img
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
 
     
 
