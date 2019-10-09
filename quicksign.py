@@ -79,12 +79,17 @@ for link in links:
             print(' Error : file not found. Continuing.')
 
             
-# Storing grayscale pics in MongoDB           
+# Storing grayscale pics in MongoDB
 for f in glob.glob('grayscale_pics/*.*'):
-    rem = open(f,'rb')
-    md5=hash(f)
-    myfiles = grid_fs.put(rem,content_type='img/png', filename=f.rsplit('/', 1)[-1], mode='rb')
-    outputdata = grid_fs.get(myfiles).read()
+    try:
+        rem = open(f, 'rb')
+        db.niveaugris.files.create_index("md5", unique=True, name="md5_unique")
+        myfiles = grid_fs.put(rem, content_type='img/jpg', filename=f.rsplit("/")[-1], mode='rb')
+        outputdata = grid_fs.get(myfiles).read()
+    except pymongo.errors.DuplicateKeyError:
+        print("File exists")
+        pass
+    rem.close()
    
 ### Flask ########    
 
